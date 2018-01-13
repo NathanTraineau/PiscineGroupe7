@@ -83,7 +83,7 @@ CREATE TABLE Festival(
 	DateFestival date, 
 	NombreTables int,
 	PrixPlaceStandard double,
-	PRIMARY KEY (AnneFestival)
+	PRIMARY KEY (AnneeFestival)
 );
 CREATE TABLE zone(
 	NumZone int NOT NULL UNIQUE AUTO_INCREMENT,
@@ -99,6 +99,7 @@ CREATE TABLE concerner(
 	Recu bit,
 	Retour bit, 
 	don bit,
+	NumZone int NOT NULL UNIQUE,
 	PRIMARY KEY (IdConcerner)
 	
 );
