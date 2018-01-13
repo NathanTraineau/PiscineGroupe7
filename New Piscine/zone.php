@@ -13,8 +13,8 @@
 			    ?>
 
 		<div class="container">
-		    <form method="POST" action="InfoEditeur.php">
-		    	<label for="NomEditeur" style="font-size: 16px">Nom de l'Editeur</label> :
+		    <form method="POST" action="ChoixZone.php">
+		    	<label for="zones" style="font-size: 16px">Zones</label> :
 		    
 			    <!--tableau des categorie-->
 			    <table class="table table-bordered table-condensed">
@@ -47,7 +47,7 @@
     
 		<middle>
 
-			    <form method="POST" action="ChoixZone.php">
+			    <!--<form method="POST" action="ChoixZone.php">-->
 			    <input type="submit" value="Ajouter une zone" />
 	
 			</form>
