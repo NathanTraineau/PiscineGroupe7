@@ -12,12 +12,16 @@
 
 			    ?>
 
-
+		<div class="container">
+		    <form method="POST" action="InfoEditeur.php">
+		    	<label for="NomEditeur" style="font-size: 16px">Nom de l'Editeur</label> :
+		    
 			    <!--tableau des categorie-->
 			    <table class="table table-bordered table-condensed">
 				<thead>
 				    <tr>
 					<th>Zones</th>
+					<th>Actions</th>
 				    </tr>
 				</thead>
 				<tbody>
@@ -30,10 +34,7 @@
 							<input type="hidden" name="zoneID" value="<?php echo $donnees['NumZone']; ?>" />			
                             				<input type="submit" style="float:right;" value="Suppr" />
                         			</form>
-						<form method="POST" action="ajoutJeuxZone.php">
-							<input type="hidden" name="zoneID" value="<?php echo $donnees['NumZone']; ?>" />
-                            				<input type="submit" style="float:right;" value="Ajouter un jeu dans cette zone" />
-                        			</form>
+						
 						<form method="POST" action="AfficherJeuxZone.php">
 							<input type="hidden" name="zoneID" value="<?php echo $donnees['NumZone']; ?>" />
                             				<input type="submit" style="float:right;" value="Voir les jeux de cette zone" />
@@ -46,11 +47,12 @@
     
 		<middle>
 
-			    <form method="POST" action="ajoutZone.php">
+			    <form method="POST" action="ChoixZone.php">
 			    <input type="submit" value="Ajouter une zone" />
 	
 			</form>
 				
 		</middle>
 	</body>
+</div>
 </html>
