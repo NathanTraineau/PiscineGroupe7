@@ -47,6 +47,7 @@ if ($myPDO->query($sql) == TRUE) {
 
 <html>
 
+<<<<<<< HEAD
 <?php
 		if (!empty($_POST['infoID'])){
 		?> 	<form name="envoie" action="InfoEditeur.php" method="POST">
@@ -57,6 +58,17 @@ if ($myPDO->query($sql) == TRUE) {
 
 	
 	<script type="text/javascript">location.href = 'jeux.php';</script>
+=======
+<?php // A chaque fois on doit faire passer la variable NumEditeur pour que lorsqu'on revient sur la page infoEditeur il affiche les données de l'editeur
+?>
+
+<form name="envoie" method="POST" action="InfoEditeur.php">
+	<input type="hidden" name="infoID" value="<?php echo $editeur; ?>" />
+	
+</form>
+	<script type="text/javascript"> document.envoie.submit();</script>
+	<script type="text/javascript">location.href = 'InfoEditeur.php';</script>
+>>>>>>> 76cb15ec5be9351bec9c30bd15ed5d37a66ee907
 	
 
 </html>

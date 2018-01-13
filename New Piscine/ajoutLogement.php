@@ -34,7 +34,19 @@
     // die();
 
 ?>
+<<<<<<< HEAD
 
+=======
+CREATE TABLE logement(
+	NumLogement int NOT NULL UNIQUE AUTO_INCREMENT,
+	NomLogement varchar(100)
+	VilleLogement varchar(255),
+	RueLogement varchar(255),
+	CodePostaleLogement varchar(255),
+	NombreChambres int,
+	CoutLogementNuit int,
+	PRIMARY KEY (NumLogement)
+>>>>>>> 76cb15ec5be9351bec9c30bd15ed5d37a66ee907
 
 <middle>
 <form action= "ajoutLogementfunc.php" method="POST" >

@@ -4,6 +4,7 @@
 
     $myPDO = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
 
+<<<<<<< HEAD
 
     if ( !empty($_POST['infoID'])) {
     	//On voit si la requête vient d'une page éditeur auquel cas on aura le champ Id editeur de figé
@@ -14,6 +15,8 @@
     	
 	}
 
+=======
+>>>>>>> 76cb15ec5be9351bec9c30bd15ed5d37a66ee907
     //Editeurs
     $sql = "SELECT NumEditeur, NomEditeur
             FROM `editeur`";
@@ -56,6 +59,7 @@
 
     </p>
      <p>
+<<<<<<< HEAD
         <?php if (!empty($edit['NomEditeur'])){
     	//On voit si la requête vient d'une page éditeur (donc aurait un identifiant d'éditeur) auquel cas on aura le champ Id editeur de figé
     	// $edit l'editeur auquel on veut ajouter un jeux
@@ -67,19 +71,29 @@
     	  else // si on ajoute un jeux sans être passé par info editeur mais par jeux.php
     	  { ?> 
         <label for="numEditeur">ID editeur</label> : <select name="infoID" id="infoID" >
+=======
+        <label for="numEditeur">Nom editeur</label> : <select name="numEditeur" id="numEditeur" required>
+>>>>>>> 76cb15ec5be9351bec9c30bd15ed5d37a66ee907
                 <?php
                 foreach($editeurs as $key => $value):
                 echo '<option value="'.$value.'">'.$key.'</option>'; 
                 endforeach;
                 ?>
             </select>
+<<<<<<< HEAD
         <?php } ?>
+=======
+>>>>>>> 76cb15ec5be9351bec9c30bd15ed5d37a66ee907
         <!--<label for="Num">NUM </label><input type="number" name="numEditeur" id="numEditeur" required/>-->
 
     </p>
 
      <p>
+<<<<<<< HEAD
         <label for="codeCategorie">Categorie</label> : <select name="codeCategorie" id="codeCategorie" >
+=======
+        <label for="codeCategorie">Categorie</label> : <select name="codeCategorie" id="codeCategorie" required>
+>>>>>>> 76cb15ec5be9351bec9c30bd15ed5d37a66ee907
                 <?php
                 foreach($categories as $key => $value):
                 echo '<option value="'.$value.'">'.$key.'</option>'; 

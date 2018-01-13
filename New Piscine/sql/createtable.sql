@@ -37,7 +37,9 @@ CREATE TABLE suivi(
 );
 CREATE TABLE logement(
 	NumLogement int NOT NULL UNIQUE AUTO_INCREMENT,
+
 	NomLogement varchar (255),
+7
 	VilleLogement varchar(255),
 	RueLogement varchar(255),
 	CodePostaleLogement varchar(255),
@@ -48,9 +50,11 @@ CREATE TABLE logement(
 CREATE TABLE reservation(
 	NumReservation int NOT NULL UNIQUE AUTO_INCREMENT,
 	AnneeReservation int NOT NULL,
+
 	NumEditeurReservation int NOT NULL,
 	DateReservation date,
 	Commentaire char(255),
+
 	PrixEspace double,
 	Statut bit,
 	EtatFacture bit,
@@ -81,6 +85,7 @@ CREATE TABLE Annee(
 );
 
 CREATE TABLE Festival(
+
 	AnneeFestival int NOT NULL,
 	DateFestival date, 
 	NombreTables int,
@@ -97,7 +102,9 @@ CREATE TABLE concerner(
 	IdConcerner int NOT NULL UNIQUE AUTO_INCREMENT,
 	NumReservation int NOT NULL UNIQUE,
 	NumJeux int NOT NULL UNIQUE,
+
 	NumZone int NOT NULL,
+
 	Nombre int, 
 	Recu bit,
 	Retour bit, 

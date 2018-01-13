@@ -26,6 +26,7 @@ mysqli_close($con);
 ?>
 
 <html>
+
 		<?php
 		if (!empty($POST['infoID'])){
 		?>

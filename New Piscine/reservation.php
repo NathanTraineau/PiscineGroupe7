@@ -47,7 +47,11 @@
             <?php while ($r = $q->fetch()): ?>
                 <tr>
                     <td><?php echo htmlspecialchars($r['DateReservation']) ?></td>
+
                     <td><?php echo htmlspecialchars($r['Commentaire']); ?></td>
+
+                    
+
                     <td><?php echo htmlspecialchars($r['PrixEspace']); ?></td>
                     <td><?php echo htmlspecialchars($r['Statut']); ?></td>
                     <td><?php echo htmlspecialchars($r['EtatFacture']); ?></td>
