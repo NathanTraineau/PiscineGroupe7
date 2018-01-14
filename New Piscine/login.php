@@ -103,19 +103,14 @@ $pass = $_POST['pass'];
 			                <?php
 			                $myPDO = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
 
-<<<<<<< HEAD
+
 			                $sql = "SELECT * FROM `Festival`";
 						    $q = $myPDO->query($sql);
 						    $festival = [];
 						    foreach($q as $fes){
 						        $festival[$fes['AnneeFestival']] = $fes['AnneeFestival'];
-=======
-			                $sql = "SELECT * FROM `festival`";
-						    $q = $myPDO->query($sql);
-						    $festival = [];
-						    foreach($q as $fes){
-						        $festival[$fes['AnneFestival']] = $fes['AnneFestival'];
->>>>>>> 76cb15ec5be9351bec9c30bd15ed5d37a66ee907
+
+
 						    }
 			                foreach($festival as $key => $value):
 			                	echo '<option value="'.$value.'">'.$key.'</option>'; //il faut créer les entrée dans la bdd
