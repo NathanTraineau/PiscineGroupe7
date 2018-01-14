@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -22,7 +23,7 @@
     if( !empty($num)){
         $sql3 = "SELECT * FROM `jeux` WHERE NumJeux = '".$num."'";
         $m = $myPDO->query($sql3)->fetch();
-        $nomJeux = $m[1];
+        $nomJeux = $m[2];
         $num = $m['NumJeux'];
 
     }
@@ -129,7 +130,7 @@
 </br>
 <form action= "changerCategorieFunc.php" method="POST" >
     <p>
-        <label for="CodeCategorie">Nom editeur</label> : <select name="CodeCategorie" id="CodeCategorie" required>
+        <label for="CodeCategorie">Nom Categorie</label> : <select name="CodeCategorie" id="CodeCategorie" required>
                 <?php
                 foreach($categories as $key => $value):
                 echo '<option value="'.$value.'">'.$key.'</option>'; 
@@ -143,4 +144,5 @@
 </form>
 <div>
 </body>
+
 </html>

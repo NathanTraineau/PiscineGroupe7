@@ -1,4 +1,4 @@
-
+ 
 <?php
 
     include'inc/header.php';
@@ -14,8 +14,10 @@
 
     $sql1 = "SELECT *
             FROM `reservation`";
-     
+    $edit = "SELECT * FROM 'editeur'";
+    $editeur = $myPDO->query($edit); 
     $q = $myPDO->query($sql1);
+    
     
     ?>
     <div class="container">
@@ -34,37 +36,42 @@
     <table class="table table-bordered table-condensed" id="editeur">
         <thead>
             <tr>
-                <th>DateReservation</th>
-                <th>Commentaire</th>
-                <th>PrixEspace</th>
-                <th>Statut</th>
-                <th>EtatFacture</th>
+                <th>Date de Reservation</th>
+                
+                <th>Editeurs </th>
+                <th>Annulé ? </th>
+                <th>Facture payée ?</th>
                 <th>Actions</th>
                 <th>Informations</th>
             </tr>
         </thead>
         <tbody>
+
             <?php while ($r = $q->fetch()): ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($r['DateReservation']) ?></td>
+                	<td><?php echo htmlspecialchars($r['DateReservation']); ?></td>
+                	<?php
+                	$edit = 'SELECT * FROM editeur where NumEditeur =  \''.$r['NumEditeurReservation'].'\'';
+    				$edite = $myPDO->query($edit); 
+    				$editeur = $edite->fetch();
+    				?>
 
-                    <td><?php echo htmlspecialchars($r['Commentaire']); ?></td>
-
+                    <td><?php echo htmlspecialchars($editeur['NomEditeur']) ?></td>
                     
 
-                    <td><?php echo htmlspecialchars($r['PrixEspace']); ?></td>
-                    <td><?php echo htmlspecialchars($r['Statut']); ?></td>
-                    <td><?php echo htmlspecialchars($r['EtatFacture']); ?></td>
+                    <td><?php if ($r['Statut'] == 1 ){
+                    	echo "non";
 
+                     }else{echo "oui" ; }?></td>
+
+                    <td><?php if ($r['EtatFacture'] == 1 ){
+                    	echo "non";
+
+                     }else{echo "oui" ; }?></td>
                     <td>
                         <form method="POST" action="supReservation.php">
                             <input type="hidden" name="ReservationID" value="<?php echo $r['NumReservation']; ?>" />
                             <input type="submit" style="float:right;" id="suppr" value="Supprimer" /></button>
-                        </form>
-                        <form method="POST" action="modifReservation.php">
-                            <!--<button type="submit">Modif</button> -->
-                            <input type="hidden" name="ReservationID" value="<?php echo $r['NumReservation']; ?>" />
-                            <input type="submit" style="float:right;" id="modif" value="Modifier" /></button>
                         </form>
                     </td>
                     <td>
@@ -84,7 +91,7 @@
     </table>
 
         </p>
-            <form method="POST" action="ajoutReservation.php">
+            <form method="POST" action="ChoixEditeurResa.php">
             <button class="button" type="submit">Ajouter Reservation</button>
         </form>
         </form>

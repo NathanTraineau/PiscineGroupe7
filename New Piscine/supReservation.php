@@ -2,7 +2,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "root";
+$password = "";
 $dbname = "piscine";
 
 
@@ -22,9 +22,9 @@ echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 //DELETE FUNCTION
 mysqli_query($con,"DELETE FROM reservation WHERE numReservation='".$num."'");
-//mysqli_close($con);
+mysqli_close($con);
 ?>
 
 <html>
-		<script type="text/javascript">location.href = 'reservation.php';</script>
+		<script type="text/javascript">location.href = 'reservation.php';</script>  
 </html>

@@ -71,6 +71,7 @@ CREATE TABLE jeux(
 	DureePartie int,
 	NumEditeur int NOT NULL,
 	CodeCategorie int NOT NULL,
+	CommentaireJeux varchar (999),
 	PRIMARY KEY (NumJeux)
 );
 CREATE TABLE categorie(

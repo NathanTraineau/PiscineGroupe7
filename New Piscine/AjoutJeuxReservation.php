@@ -12,28 +12,25 @@
     $myPDO = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
 
     
-    $sqlannee = "SELECT * from Festival where Courant = '1' ";
+    $sqlannee = 'SELECT * from Festival where Courant = "1" ';
 
 	$annee = $myPDO->query($sqlannee);
 	$Festival = $annee->fetch();
     //Jeux
     
-
-    
 	$NumEditeurReservation = $_POST['infoID'];
-	$FestivalReservation = $Festival['AnneeFestival'];
+	$FestivalAnnee = $Festival['AnneeFestival'];
 
 
   	#On récup la réservation de l'éditeur
 
-    $NumRes1 = 'SELECT * from reservation where NumEditeurReservation =  ".$NumEditeurReservation." AND FestivalReservation = ".$FestivalReservation." ';
+    $NumRes1 = 'SELECT * from reservation where NumEditeurReservation =  \''.$NumEditeurReservation.'\' and FestivalReservation= \''.$FestivalAnnee.'\' ';
 
 	$NumRes2 = $myPDO->query($NumRes1);
 	$Reservation = $NumRes2->fetch();
 
-
 # Recupère les jeux de l'editeur 
-	$sql2 = 'SELECT * FROM `jeux` where NumEditeur = ".$NumEditeurReservation." AND FestivalJeux = ".$FestivalReservation." ';
+	$sql2 = 'SELECT * FROM `jeux` where NumEditeur =  \''.$NumEditeurReservation.'\' and FestivalJeux = \''.$FestivalAnnee.'\'' ;
 
     $jeux = $myPDO->query($sql2);
 ?>

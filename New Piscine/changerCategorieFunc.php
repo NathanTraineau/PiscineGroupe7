@@ -1,3 +1,4 @@
+
 <?php
 
 
@@ -23,4 +24,5 @@ if ($myPDO->query($sql) == TRUE) {
 ?>
 <html>
 		<script type="text/javascript">location.href = 'jeux.php';</script>
+
 </html>
