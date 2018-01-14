@@ -33,7 +33,7 @@
 
     </p>
      <p>
-        <label for="CoutLogementNuit">Le cout du logement pas nuit</label> : <input type="float" name="CoutLogementNuit" id="CoutLogementNuit" required/>
+        <label for="CoutLogementNuit">Le cout du logement par nuit</label> : <input type="float" name="CoutLogementNuit" id="CoutLogementNuit" required/>
 
     </p>
     <?php

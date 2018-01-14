@@ -18,8 +18,7 @@ $myPDO = new PDO('mysql:host=localhost;dbname=piscine', 'root');
 
 
 
-    	$sqlannee = "SELECT * from Festival where Courant = '1' ";
-
+    $sqlannee = "SELECT * from Festival where Courant = '1' ";
 	$annee = $myPDO->query($sqlannee);
 	$Festival = $annee->fetch();
 

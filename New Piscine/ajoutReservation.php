@@ -108,8 +108,8 @@
 
     </p>
     
-    <input type="hidden" name="infoID" value="<?php echo $_POST['infoID']; ?>" />
-    <input type="submit" value="Ajouter de Jeux" id = "add" />
+    <input type="hidden" name="infoID" value="<?php echo $NumEditeur; ?>" />
+    <input type="submit" value="Ajouter des Jeux" id = "add" />
     </form>
 
 

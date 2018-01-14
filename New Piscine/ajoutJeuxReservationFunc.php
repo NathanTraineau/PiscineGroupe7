@@ -52,7 +52,7 @@ if ($myPDO->query($sql) == TRUE) {
 // $conn->close();
 ?>
 <html>
-		<script type="text/javascript">location.href = 'jeux.php';</script>
+		<script type="text/javascript">location.href = 'reservation.php';</script>
 </html>
 
 

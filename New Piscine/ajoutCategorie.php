@@ -9,7 +9,7 @@
 
 		<middle>
 			<!--Formulaire pour ajouter une catégorie-->
-	    		<form method="POST" action="AjoutCategorieFunc.php">
+	    		<form method="POST" action="ajoutCategorieFunc.php">
 		    		<legend>Catégorie</legend>
 
 		    		<p>
