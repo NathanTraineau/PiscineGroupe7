@@ -1,4 +1,3 @@
-
 <?php
 $servername = "localhost";
 $username = "root";
@@ -10,7 +9,7 @@ $dbname = "piscine";
 $myPDO = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
 // $num = $_POST['numEditeur'];
 //$nom = $_POST['nomEditeur'];
-$num = $_POST['jeuxID'];
+$num = $_POST['LogementID'];
 
 // Create connection
 $con = mysqli_connect($servername, $username, $password, $dbname);
@@ -21,10 +20,10 @@ if (mysqli_connect_errno()) {
 echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 //DELETE FUNCTION
-mysqli_query($con,"DELETE FROM jeux WHERE numJeux='".$num."'");
+mysqli_query($con,"DELETE FROM logement WHERE numLogement='".$num."'");
 mysqli_close($con);
 ?>
 
 <html>
-		<script type="text/javascript">location.href = 'jeux.php';</script>
+		<script type="text/javascript">location.href = 'logement.php';</script>
 </html>

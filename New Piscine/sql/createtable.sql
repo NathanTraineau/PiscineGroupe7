@@ -27,6 +27,7 @@ CREATE TABLE loger(
 );
 CREATE TABLE suivi(
 	RefSuivi int NOT NULL UNIQUE AUTO_INCREMENT,
+	FestivalSuivi int NOT NULL,
 	PremierContact int,
 	Relance bit,
 	Reponse bit,
@@ -39,7 +40,7 @@ CREATE TABLE logement(
 	NumLogement int NOT NULL UNIQUE AUTO_INCREMENT,
 
 	NomLogement varchar (255),
-7
+
 	VilleLogement varchar(255),
 	RueLogement varchar(255),
 	CodePostaleLogement varchar(255),
@@ -49,11 +50,11 @@ CREATE TABLE logement(
 );
 CREATE TABLE reservation(
 	NumReservation int NOT NULL UNIQUE AUTO_INCREMENT,
-	AnneeReservation int NOT NULL,
+	FestivalReservation int NOT NULL,
 
 	NumEditeurReservation int NOT NULL,
 	DateReservation date,
-	Commentaire char(255),
+	Commentaire text(999),
 
 	PrixEspace double,
 	Statut bit,
@@ -63,7 +64,7 @@ CREATE TABLE reservation(
 );
 CREATE TABLE jeux(
 	NumJeux int NOT NULL UNIQUE AUTO_INCREMENT,
-	AnneeJeux int,
+	FestivalJeux int,
 	NomJeux varchar(255),
 	NombreJoueur int,
 	DateSortie date,
@@ -78,18 +79,14 @@ CREATE TABLE categorie(
 	PRIMARY KEY (CodeCategorie)
 );
 
-CREATE TABLE Annee(
-	Annee int NOT NULL ,
-	
-	PRIMARY KEY (Annee)
-);
 
 CREATE TABLE Festival(
 
-	AnneeFestival int NOT NULL,
+	AnneeFestival int NOT NULL UNIQUE,
 	DateFestival date, 
 	NombreTables int,
 	PrixPlaceStandard double,
+	Courant boolean,
 	PRIMARY KEY (AnneeFestival)
 );
 CREATE TABLE zone(
@@ -106,9 +103,9 @@ CREATE TABLE concerner(
 	NumZone int NOT NULL,
 
 	Nombre int, 
-	Recu bit,
-	Retour bit, 
-	don bit,
+	Recu boolean,
+	Retour boolean, 
+	don boolean,
 	PRIMARY KEY (IdConcerner)
 	
 );

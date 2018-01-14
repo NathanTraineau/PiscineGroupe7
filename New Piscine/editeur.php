@@ -13,6 +13,12 @@
      
     $q = $myPDO->query($sql1);
 
+   
+	$sqltest = "SELECT * from Festival where Courant = '1' ";
+
+	$test = $myPDO->query($sqltest);
+	$aff= $test->fetch();
+	echo $aff['AnneeFestival'];
     ?>
     <div class="container">
     <form method="POST" action="InfoEditeur.php">

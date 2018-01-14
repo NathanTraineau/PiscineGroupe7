@@ -6,11 +6,29 @@
     //$dbname = "piscine";
     //$editeur= "editeur";
     $myPDO = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
-
-    $sql = "SELECT NumJeux, NomJeux, NombreJoueur,  DateSortie, DureePartie, NumEditeur, CodeCategorie 
-            FROM `jeux`";
-     
+    $sql = "SELECT NumEditeur
+            FROM `editeur`";
     $q = $myPDO->query($sql);
+    //$editeurs = [];
+    //foreach($q as $ed){
+
+        //$editeurs[$ed['NomEditeur']] = $ed['NumEditeur'];
+    //}
+
+
+    
+    $sqlannee = "SELECT * from Festival where Courant = '1' ";
+
+	$annee1 = $myPDO->query($sqlannee);
+	$Festival = $annee1->fetch();
+	$annee = $Festival['AnneeFestival'];
+
+
+    $sql1 = 'SELECT * FROM `jeux` WHERE FestivalJeux = \''.$annee.'\''  ;
+     
+    $k = $myPDO->query($sql1);
+
+    
     ?>
         <div class="container">
             <form method="POST" action="InfoJeux.php">
@@ -30,12 +48,13 @@
                         <th>Id Editeur</th>
                         <th>Id Categorie</th>
                         <th>Actions</th>
+                        <th>Informations</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($r = $q->fetch()): ?>
+                    <?php while ($r = $k->fetch()): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($r['NomJeux']) ?></td>
+                            <td><?php echo htmlspecialchars($r["NomJeux"]) ?></td>
                             <td><?php echo htmlspecialchars($r['NombreJoueur']); ?></td>
                             <td><?php echo htmlspecialchars($r['DateSortie']); ?></td>
                             <td><?php echo htmlspecialchars($r['DureePartie']); ?></td>
@@ -49,6 +68,17 @@
                                 <form method="POST" action="modifJeux.php">
                                     <input type="hidden" name="jeuxID" value="<?php echo $r['NumJeux']; ?>" />
                                     <input type="submit" style="float:right;" id="modif" value="Modifier" />
+                                </form>
+                                <!-- <form method="POST" action="modifEditeur.php"> 
+                                    
+                                    <input type="submit" style="float:right;" id="modif" value="Modif"/>Modif</button>
+                                </form>-->
+                            </td>
+                            <td>
+                                <form method="POST" action="InfoJeux.php">
+                                    <!--<button type="submit">Modif</button> -->
+                                    <input type="hidden" name="infoID" value="<?php echo $r['NumJeux']; ?>" /> <!-- met en mémoire pour env en post, le num de l'editeur -->
+                                    <input type="submit" style="float:right;" id="info" value="info" />Voir Informations</button>
                                 </form>
                                 <!-- <form method="POST" action="modifEditeur.php"> 
                                     
