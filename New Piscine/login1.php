@@ -26,7 +26,7 @@ $dbname = "piscine";
 // Create connection
 // $conn = new mysqli($servername, $username, $password, $dbname);
 $myPDO = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
-$annee = $_POST['annee'];
+$annee = $_POST['Annee'];
 
 // echo $num;
 //echo $nom;
@@ -39,13 +39,16 @@ $annee = $_POST['annee'];
 // } 
 //$sql = "UPDATE MyGuests SET lastname='Doe' WHERE id=2";
 //$sql = "INSERT INTO `editeur` SET VALUES (NULL, '$nom', '$ville', '$rue', '$code')";
+
+
 // $sql = "SELECT * FROM `editeur`";
-$sql = "UPDATE `Annee` SET Annee='".$annee."' ";
+$sqlRemettre = "UPDATE `Festival` SET Courant = '0' ";
+$sql = "UPDATE `Festival` SET Courant = '1' where AnneeFestival='".$annee."' ";
 
 //$array=[];
 //$stmt = $myPDO->prepare($sql);
 // $stmt->execute($array) or die(print_r($stmt->errorInfo(), true));
-
+$myPDO->query($sqlRemettre);
 //verification connexion base de donnes
 if ($myPDO->query($sql) == TRUE) {
     //echo "New record created successfully";

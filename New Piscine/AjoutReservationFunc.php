@@ -1,55 +1,77 @@
 
+<!DOCTYPE html>
+<html>
 
 <?php
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "piscine";
+
+
+$myPDO = new PDO('mysql:host=localhost;dbname=piscine', 'root');
+
 	
 	//include'conexion2.php';
 
-    $myPDO = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
-
-    	$annee= $myPDO->querry("SELECT Annee FROM 'Annee ") ->fetch();
-
- 		$sql2 = "SELECT * FROM `jeux` where NumEditeur = '".$NumEditeur."' , AnneeJeux = '".$annee."' ";
-
-    	$jeux = $myPDO->query($sql2);
 
 
-    	$reservation = $myPDO->query($sql2); ?>
 
-    		<table class="table table-bordered table-condensed" id="jeux">
-                <thead>
-                    <tr>
-                        <th>Nom Jeux</th>
-                        <th>Nombre Joueur</th>
-                        <th>Date sortie</th>
-                        <th>Duree Partie</th>
-                        <th>Id Editeur</th>
-                        <th>Id Categorie</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-            <?php
-            while ($r = $jeux->fetch()): ?>
-                <tr>
-                	
-                    		<td><?php echo htmlspecialchars($r['NomJeux']) ?></td>
-                            <td><?php echo htmlspecialchars($r['NombreJoueur']); ?></td>
-                            <td><?php echo htmlspecialchars($r['DateSortie']); ?></td>
-                            <td><?php echo htmlspecialchars($r['DureePartie']); ?></td>
-                            <td><?php echo htmlspecialchars($r['NumEditeur']); ?></td>
-                            <td><?php echo htmlspecialchars($r['CodeCategorie']); ?></td>
-                            <td>
 
-                        	<form method="POST" action="ajoutJeuxReservation.php">
-                        	<input type="int" name="nombre" > Nombre de jeux <br>
-                            <input type="bool" name="recu"  > Recu <br>
-                            <input type="bool" name="Retour"  > A retourner <br>
-                            <input type="bool" name="Don" > Don <br>
-                            <input type="bool" name="zoneEditeur" > Zone editeur <br>
-                         	<input type="submit" name="submit" >
+    	$sqlannee = "SELECT * from Festival where Courant = '1' ";
 
-                         	</form>
-                </td>
+	$annee = $myPDO->query($sqlannee);
+	$Festival = $annee->fetch();
+
+$NumEditeurReservation = $_POST['infoID'];
+$FestivalReservation = $Festival['AnneeFestival'];
+$dateReservation = $_POST['dateReservation'];
+$Commentaire=$_POST['Commentaire'];
+
+$PrixEspace = $_POST['PrixEspace'];
+if (!empty($_POST['EtatFacture'])){
+	$EtatFacture=$_POST['EtatFacture'];
+
+} else {
+	$EtatFacture='0'; # si facture pas payée case pas cochée
+}
+
+
+
+
+$sql = "INSERT INTO `reservation` VALUES (NULL, '$FestivalReservation', '$NumEditeurReservation', '$dateReservation', '$Commentaire', '$PrixEspace', '1', '$EtatFacture')";
+
+
+
+
+
+
+
+if ($myPDO->query($sql) == TRUE) {
+	
+?>
+	<html>
+
+<form name="envoie" method="POST" action="AjoutJeuxReservation.php">
+	
+	<input type="hidden" name="infoID" value="<?php echo $NumEditeurReservation; ?>" />
+	
+</form>
+	<script type="text/javascript"> document.envoie.submit();</script>
+
+</html>
+<?php
+
+    //echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>";// . $conn->error;
+}
+
+?>
+
+
+
+    		
             </tbody>
                         
                         
@@ -61,4 +83,4 @@
                         </form>-->
                     </td>
                 </tr>
-            <?php endwhile; ?>
+            

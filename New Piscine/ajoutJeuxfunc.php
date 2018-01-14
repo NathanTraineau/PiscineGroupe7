@@ -12,28 +12,17 @@ $nomJeux = $_POST['nomJeux'];
 $nombre=$_POST['nombre'];
 $DateSortie = $_POST['DateSortie'];
 $DureePartie = $_POST['DureePartie'];
-$editeur = $_POST['numEdit'];
-$categ = $_POST['codeCategorie'];
+$editeur = $_POST['numEditeur'];
+#$categ = $_POST['codeCategorie'];
 
+$sqltest = "SELECT * from Festival where Courant = '1' ";
 
+$test = $myPDO->query($sqltest);
+$Festival = $test->fetch();
 
-echo $nomJeux;
-echo $nombre;
-echo $DateSortie;
-echo $DureePartie;
-echo $editeur;
-echo $categ;
-// Check connection
-// if ($myPDO->connect_error) {
-//     die("Connection failed: " . $myPDO->connect_error);
-// } 
-
-$sql = "INSERT INTO `jeux` VALUES (NULL, '$nomJeux', '$nombre', '$DateSortie', '$DureePartie', '$editeur', '4' )";
+$sql = "INSERT INTO `jeux` VALUES (NULL,  '".$Festival['AnneeFestival']."', '$nomJeux', '$nombre', '$DateSortie', '$DureePartie', '$editeur', '3' )";
 // $sql = "SELECT * FROM `editeur`";
 
-//$array=[];
-//$stmt = $myPDO->prepare($sql);
-// $stmt->execute($array) or die(print_r($stmt->errorInfo(), true));
 
 //verification connexion base de donnes
 if ($myPDO->query($sql) == TRUE) {
@@ -44,21 +33,6 @@ if ($myPDO->query($sql) == TRUE) {
 
 // $conn->close();
 ?>
-
 <html>
-
-
-<?php
-		if (!empty($_POST['numEdit'])){
-		?> 	<form name="envoie" action="InfoEditeur.php" method="POST">
-    		<input type="hidden" name="infoID" value="<?php echo $editeur; ?>" />
-    		</form>
-    		<script type="text/javascript"> document.envoie.submit();</script>
-    	<?php } ?>
-
-	
-	<script type="text/javascript">location.href = 'jeux.php';</script>
-
-	
-
+		<script type="text/javascript">location.href = 'jeux.php';</script>
 </html>

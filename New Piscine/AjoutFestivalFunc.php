@@ -26,7 +26,7 @@ $PrixPlaceStandard = $_POST['PrixPlaceStandard'];
 
 
 
-$sql2 = "INSERT INTO `Festival` VALUES ($AnneeFestival, $DateFestival,$NombreTables, $PrixPlaceStandard  )";
+$sql2 = "INSERT INTO `Festival` VALUES ($AnneeFestival, $DateFestival,$NombreTables, $PrixPlaceStandard, '0'  )";
 
 if ($myPDO->query($sql2) == TRUE) {
     //echo "New record created successfully";

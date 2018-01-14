@@ -106,7 +106,7 @@
                     <tr><td> Nom du jeux :</td><td><strong><?php echo htmlspecialchars($JeuxCourant['NomJeux']) ?><strong></td> 
                     	<td>  
                     	<form method="POST" action="supJeux.php">
-                            <input type="hidden" name="jeuxID" value="<?php echo $r['NumJeux']; ?>">
+                            <input type="hidden" name="jeuxID" value="<?php echo $JeuxCourant['NumJeux']; ?>">
                             <input type="hidden" name="infoID" value="<?php echo $num; ?>" />
                             <input type="submit" style="float:right;" id="suppr" value="Suppr" />
                         </form>
@@ -114,13 +114,13 @@
                     	<td>
                         <form method="POST" action="modifJeux.php">
                             <!--<button type="submit">Modif</button> -->
-                            <input type="hidden" name="jeuxID" value="<?php echo $r['NumJeux']; ?>" />
+                            <input type="hidden" name="jeuxID" value="<?php echo $JeuxCourant['NumJeux']; ?>" />
                             <input type="hidden" name="infoID" value="<?php echo $num; ?>" />
                             <input type="submit" style="float:right;" id="suppr" value="modif" />
                         </form> 
                         </td> 
                     </tr>
-                    <tr><td>Nombre de Joueurs : </td><?php echo htmlspecialchars($JeuxCourant['NombreJoueur']); ?></td></tr>
+                    <tr><td>Nombre de Joueurs : <td><?php echo htmlspecialchars($JeuxCourant['NombreJoueur']); ?></td></tr>
                     <tr><td>Date de Sortie : <td><?php echo htmlspecialchars($JeuxCourant['DateSortie']); ?></td></tr>
                     <tr><td>Duree Partie<td><?php echo htmlspecialchars($JeuxCourant['DureePartie']); ?></td></tr>
                     <tr><td>Categorie penser a faire une fonction qui renvoie le str de la caté<td><?php echo htmlspecialchars($JeuxCourant['CodeCategorie']); ?></td></tr>

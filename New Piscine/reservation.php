@@ -12,7 +12,7 @@
     $myPDO = new PDO('mysql:host=localhost;dbname=piscine', 'root');
 
 
-    $sql1 = "SELECT NumReservation, DateReservation, Commenaire, PrixEspace, Statut, EtatFacture
+    $sql1 = "SELECT *
             FROM `reservation`";
      
     $q = $myPDO->query($sql1);

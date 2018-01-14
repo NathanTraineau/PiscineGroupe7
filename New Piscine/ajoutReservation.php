@@ -11,10 +11,10 @@
 	$NumEditeur = $_POST['infoID'];
     $myPDO = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
 
-    $annee= $myPDO->querry("SELECT Annee FROM 'Annee ") ->fetch();
-
+   	
+/*
     //Jeux
-    $sql = " SELECT * FROM `reservation` WHERE NumEditeur = '".$NumEditeur."' ,  AnneeJeux = '".$annee."' ";
+    $sql = " SELECT * FROM `reservation` WHERE NumEditeur = '".$NumEditeur."' ,   ";
 
     $q = $myPDO->query($sql);
 
@@ -30,7 +30,9 @@
         <?php
         
     }
-   
+
+    */
+
     ?>
 
     <form method="POST" action="ChoixEditeurResa.php">
@@ -47,10 +49,15 @@
 ?>
 
     <h3>Ajouter une Reservation pour <?php echo $NomEdit['NomEditeur'] ?></h3>
+
+    <form method="POST" action="ajoutLogement.php">
+			            		<input type="hidden" name="infoID" value="<?php echo $infoID; ?>" />
+
+								<button type="submit">Ajout Logement</button>
+							</form>
+                    
     <form method="POST" action="AjoutReservationFunc.php">
-    <p>
-        <label for="DateReservation">Date de reservation</label> : <input type="date" name="dateReservation" id="dateReservation" required  />
-    </p>
+   
     <!-- Ajout d'un logement à la résa -->
     <label for="Annee">Logement </label> : <select name="logement" id="logement" >
 			                <?php
@@ -60,21 +67,17 @@
 						    $q = $myPDO->query($sql);
 						    $festival = [];
 						    foreach($q as $fes){
-						        $festival[$fes['NumLogement']] = $fes['NomLogement'];
+						        $festival[$fes['NomLogement']] = $fes['NumLogement'];
 						    }
 			                foreach($festival as $key => $value):
-			                	echo '<option value="'.$value.'">'.$key.'</option>'; //il faut créer les entrée dans la bdd
+			                	echo '<option value="'.$value.'">'.$key.'</option>'; //il faut créer les entrées dans la bdd
 			                endforeach;
 			                ?>
-			            	</select>
+			                </select>
 
-
-			            	<form method="POST" action="ChoixEditeurResa.php">
-			            	<input type="hidden" name="infoID" value="<?php echo $infoID; ?>" />
-
-							 <button type="submit">Ajout Logement</button>
-							</form>
-                    
+			                
+			            	
+			            	
     
 
 
@@ -93,23 +96,20 @@
 
     </p>
 
+    
     <p>
-        <label for="Statut">Statut</label> : <input type="bool" name="Statut" id="Statut" required/>
-    </p>
-
-    <p>
-        <label for="EtatFacture">Etat de la Facture</label> : <input type="bool" name="EtatFacture" id="EtatFacture" required/>
+        <label for="EtatFacture">Facture payée ?</label> : <input type="checkbox" name="EtatFacture" id="EtatFacture" value ="1" />
         <!--<label for="Num">NUM </label><input type="number" name="numEditeur" id="numEditeur" required/>-->
 
     </p>
 
     <p>
-        <label for="Commentaire">Commentaire</label> : <input type="text" name="Commentaire" id="Commentaire" required/>
+        <label for="Commentaire">Commentaire</label> : <input type="text" rows="6" name="Commentaire" id="Commentaire" />
 
     </p>
-    <input type="hidden" name="annee" value="<?php echo $annee; ?>" />
-    <input type="hidden" name="infoID" value="<?php echo $infoID; ?>" />
-    <input type="submit" value="Ajouter Reservation" id = "add" />
+    
+    <input type="hidden" name="infoID" value="<?php echo $_POST['infoID']; ?>" />
+    <input type="submit" value="Ajouter de Jeux" id = "add" />
     </form>
 
 
