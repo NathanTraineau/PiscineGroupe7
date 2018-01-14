@@ -45,6 +45,10 @@
 
     </p>
     <p>
+        <label for="DureePartie">Commentaire</label> : <input type="int" name="CommentaireJeux" id="CommentaireJeux" />
+        
+    </p>
+    <p>
         <label for="numEditeur">Nom editeur</label> : <select name="numEditeur" id="numEditeur" required>
                 <?php
                 foreach($editeurs as $key => $value):
