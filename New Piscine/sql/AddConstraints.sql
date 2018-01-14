@@ -6,7 +6,11 @@ ALTER TABLE `jeux` ADD CONSTRAINT `FK_CategorieJeux` FOREIGN KEY (`CodeCategorie
 
 ALTER TABLE `jeux` ADD CONSTRAINT `FK_EditeurJeux` FOREIGN KEY (`NumEditeur`) REFERENCES `editeur`(`NumEditeur`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
+<<<<<<< HEAD
+ALTER TABLE `zone` ADD CONSTRAINT `FK_FestivalZone` FOREIGN KEY (`AnneFestival`) REFERENCES `festival`(`AnneFestival`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+=======
 ALTER TABLE `zone` ADD CONSTRAINT `FK_FestivalZone` FOREIGN KEY (`AnneeZone`) REFERENCES `festival`(`AnneeFestival`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+>>>>>>> 76cb15ec5be9351bec9c30bd15ed5d37a66ee907
 
 ALTER TABLE `regrouper` ADD CONSTRAINT `FK_EditeurRegrouper` FOREIGN KEY (`NumEditeur`) REFERENCES `editeur`(`NumEditeur`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -27,5 +31,8 @@ ALTER TABLE `loger` ADD CONSTRAINT `FK_ReservationLoger` FOREIGN KEY (`NumReserv
 ALTER TABLE `concerner` ADD CONSTRAINT `FK_JeuConcerner` FOREIGN KEY (`NumJeux`) REFERENCES `jeux`(`NumJeux`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 ALTER TABLE `concerner` ADD CONSTRAINT `FK_ReservationConcerner` FOREIGN KEY (`NumReservation`) REFERENCES `reservation`(`NumReservation`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+<<<<<<< HEAD
+=======
 
 ALTER TABLE `concerner` ADD CONSTRAINT `FK_ZoneConcerner` FOREIGN KEY (`NumZone`) REFERENCES `zone`(`NumZone`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+>>>>>>> 76cb15ec5be9351bec9c30bd15ed5d37a66ee907

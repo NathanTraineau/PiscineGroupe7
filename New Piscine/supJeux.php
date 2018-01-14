@@ -26,5 +26,17 @@ mysqli_close($con);
 ?>
 
 <html>
+
+		<?php
+		if (!empty($POST['infoID'])){
+		?>
+		<form method="POST" action="InfoEditeur.php" name="envoie" >
+         	<input type="hidden" name="infoID" value="<?php echo $num; ?>" />
+
+                           
+        </form> 
+        <script type="text/javascript"> document.envoie.submit();</script>
+        <?php } ?>
+
 		<script type="text/javascript">location.href = 'jeux.php';</script>
 </html>

@@ -3,6 +3,7 @@
 
 			//en tête
 			include'inc/header.php';
+
 		?>
 <middle>
 		<!--Formulaire pour ajouter une catégorie-->
@@ -25,6 +26,7 @@ else
 <input type="submit" value="Ajouter la zone" />
 
 
+
 				</p>
 			</form>
 			<form method="POST" action="zone.php">
@@ -33,5 +35,7 @@ else
 			</form>
 		</middle>
 	</body>
+
 <?php } ?>
+
 </html>

@@ -32,6 +32,10 @@
 								  <li><a href="reservation.php">Reservation</a></li>
 								  <li><a href="logement.php">Logement</a></li>
 								  <li><a href="zone.php">Zones</a></li>
+<<<<<<< HEAD
+								  <li><a href="ChoixEditeurResa.php">resa test</a></li>
+=======
+>>>>>>> 76cb15ec5be9351bec9c30bd15ed5d37a66ee907
 								</ul>
 							</div>
 						</div>

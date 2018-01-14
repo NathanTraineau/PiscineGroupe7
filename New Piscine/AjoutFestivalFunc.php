@@ -24,11 +24,23 @@ $NombreTables = $_POST['NombreTables'];
 $PrixPlaceStandard = $_POST['PrixPlaceStandard'];
 // echo $num;
 
-$IdEditeur = $_POST['infoID'];
-$sql2 = "INSERT INTO `festival` VALUES ('$AnneeFestival', '$DateFestival', '$NombreTables', '$PrixPlaceStandard')";
+
+
+$sql2 = "INSERT INTO `Festival` VALUES ($AnneeFestival, $DateFestival,$NombreTables, $PrixPlaceStandard  )";
 
 if ($myPDO->query($sql2) == TRUE) {
     //echo "New record created successfully";
+    ?>
+    <html>
+		
+
+	
+	<script type="text/javascript">location.href = 'login.php';</script>
+	
+
+	</html>
+<?php
+
 } else {
     echo "Error: " . $sql2 . "<br>";// . $conn->error;
 }
@@ -36,6 +48,7 @@ if ($myPDO->query($sql2) == TRUE) {
 
 // $conn->close();
 ?>
+
 
 <html>
 		
@@ -45,3 +58,4 @@ if ($myPDO->query($sql2) == TRUE) {
 	
 
 </html>
+

@@ -12,7 +12,7 @@
             FROM `editeur`";
      
     $q = $myPDO->query($sql1);
-    echo $annee
+
     ?>
     <div class="container">
     <form method="POST" action="InfoEditeur.php">

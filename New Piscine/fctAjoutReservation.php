@@ -11,13 +11,18 @@ $dbname = "piscine";
 $myPDO = new PDO('mysql:host=localhost;dbname=piscine', 'root');
 
 $dateReservation = $_POST['dateReservation'];
-$Commenaire=$_POST['Commenaire'];
+
+$Commentaire=$_POST['Commentaire'];
+
+
 $PrixEspace = $_POST['PrixEspace'];
 $Statut = $_POST['Statut'];
 $EtatFacture=$_POST['EtatFacture'];
 
 
-$sql = "INSERT INTO `reservation` VALUES (NULL, '$dateReservation', '$Commenaire', '$PrixEspace', '$Statut', '$EtatFacture')";
+
+$sql = "INSERT INTO `reservation` VALUES (NULL, '$dateReservation', '$Commentaire', '$PrixEspace', '$Statut', '$EtatFacture')";
+
 
 
 

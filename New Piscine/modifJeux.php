@@ -18,7 +18,9 @@
     </p>
                     
     <p>
-        <label for="NombreJoueur">Mofifier le nombre de joueur??</label> : <input type="text" name="nb" id="nb" value="<?php echo $row['NombreJoueur']; ?>" />
+
+        <label for="NombreJoueur">Mofifier le nombre de joueur</label> : <input type="text" name="nb" id="nb" value="<?php echo $row['NombreJoueur']; ?>" />
+
 
     </p>
     <p>
@@ -26,10 +28,17 @@
 
     </p>
     <p>
-        <label for="DureePartie">Modifier le code postale</label> : <input type="text" name="duree" id="duree" value="<?php echo $row['DureePartie']; ?>" />
+
+        <label for="DureePartie">Modifier la Duree de la partie</label> : <input type="text" name="duree" id="duree" value="<?php echo $row['DureePartie']; ?>" />
         <!--<label for="Num">NUM </label><input type="number" name="numEditeur" id="numEditeur" required/>-->
 
     </p>
+    <?php
+		if (!empty($_POST['infoID'])){
+		?>
+    		<input type="hidden" name="infoID" value="<?php echo $num; ?>" />
+    	<?php } ?>
+
     <input type="hidden" name="jeuxID" value="<?php echo $_POST['jeuxID']; ?>" />
     <input type="submit" value="Save" id = "add" />
 </form>
