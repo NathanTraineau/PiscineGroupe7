@@ -2,43 +2,80 @@
 		//en tête
 		include'inc/header.php';
 		$numZ = $_POST['zoneID'];
+
 		//connexion base de donnees
 		$mybdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
+
+		//Nom de la zone 
+		$nomZ = "SELECT * from zone WHERE NumZone = '$numZ' ";
+		$nomZ = $mybdd->query($nomZ);
+		$nomZ = $nomZ->fetch();
+		$nomZ = $nomZ['NomZone'];
+
+		//Selectionne le festival
+		$sqltest = "SELECT * from Festival WHERE Courant = '1' ";
+		$test = $mybdd->query($sqltest);
+		$Festival = $test->fetch();
+		$annee = $Festival['AnneeFestival'];
+		
 		//On recupère les jeux de la zone 
-		$requete='SELECT * FROM jeux, concerner WHERE concerner.NumJeux = jeux.NumJeux and concerner.NumZone=\'' . $numZ . '\'';
+		$requete='SELECT * FROM jeux, concerner WHERE concerner.NumJeux = jeux.NumJeux and concerner.NumZone=\'' . $numZ . '\' and jeux.FestivalJeux=\'' . $annee . '\'';
 		$reponse = $mybdd->query($requete);
 
 
-		//suppression
-		//$requete= $mybdd->prepare('DELETE FROM zone WHERE NumZone=:idZone');
-		//$requete->execute(array('idZone'=>$_POST['zoneID']));
 ?>
 		
 
 		<!--On affiche ces jeux-->
 		<div class="container">
-		<label for="jeuZones" style="font-size: 16px">Jeux de la Zone</label> :
+		<label for="jeuZones" style="font-size: 16px">Jeux de la Zone <?php echo $nomZ?></label> :
 		    
 			    <!--tableau des categorie-->
 			    <table class="table table-bordered table-condensed">
 				<thead>
 				    <tr>
 					<th>Jeux</th>
-					<th>Actions</th>
+					<th>Nom Editeur</th>
+					<th>Nombre de jeux</th>
+					<th>Reçu ?</th>
+					<th>A retourné ?</th>
+					<th>donné ?</th>
+					<th>Informations Supplémentaires</th>
 				    </tr>
 				</thead>
 				<tbody>
 					<!--Affiche les catégories-->
 				    <?php while ($donnees = $reponse->fetch()):?>
+
+					<?php
+					//Nom de l'editeur
+					$nomED = 'SELECT * from editeur WHERE NumEditeur = \'' . $donnees['NumEditeur'] . '\' ';
+					$nomED = $mybdd->query($nomED);
+					$nomED = $nomED->fetch();
+					$nomED= $nomED['NomEditeur'];
+					?>
 					<tr>
 					<td><?php echo htmlspecialchars($donnees['NomJeux']) ?></td>
-					<td><?php echo htmlspecialchars($donnees['NombreJoueur']) ?></td>
-					<td><?php echo htmlspecialchars($donnees['DateSortie']) ?></td>
-					<td><?php echo htmlspecialchars($donnees['DureePartie']) ?></td>
-					<td><?php echo htmlspecialchars($donnees['NumEditeur']) ?></td>
-					<td><?php echo htmlspecialchars($donnees['CodeCategorie']) ?></td>
-					<td><?php echo htmlspecialchars($donnees['Recu']) ?></td>
-					<td><?php echo htmlspecialchars($donnees['Retour']) ?></td>
+					<td><?php echo htmlspecialchars($nomED) ?></td>
+					<td><?php echo htmlspecialchars($donnees['Nombre']) ?></td>
+
+					<td><?php if ($donnees['Recu'] == 1 ){
+                    				echo "non";
+                     			}else{echo "oui" ; }?></td>
+
+                   			<td><?php if ($donnees['Retour'] == 1 ){
+                    				echo "non";
+                     			}else{echo "oui" ; }?></td>
+
+					<td><?php if ($donnees['don'] == 1 ){
+                    				echo "non";
+                     			}else{echo "oui" ; }?></td>
+					<td>
+					<form method="POST" action="InfoJeux.php">
+                                    <input type="hidden" name="infoID" />
+                                    <input type="submit" style="float:right;" id="suppr" value="Info Jeux" />
+                                    </form>
+					</td>
 					</tr>
 				    <?php endwhile; ?>
 				</tbody>

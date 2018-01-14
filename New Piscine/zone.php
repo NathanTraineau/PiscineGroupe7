@@ -5,8 +5,15 @@
 			    include'inc/header.php';
 			   //connexion bdd
 			    $mybdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
+			//Selectionne le festival
+			$sqltest = "SELECT * from Festival WHERE Courant = '1' ";
+			$test = $mybdd->query($sqltest);
+			$Festival = $test->fetch();
+			$annee = $Festival['AnneeFestival'];
 
-			    $requete = "SELECT NumZone, NomZone FROM zone";
+
+
+			    $requete = 'SELECT NumZone, NomZone, AnneeZone FROM zone WHERE AnneeZone=\'' . $annee . '\'';
 			     
 			    $reponse = $mybdd->query($requete);
 

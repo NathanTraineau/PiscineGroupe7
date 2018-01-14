@@ -9,8 +9,15 @@
 		$reponse = $mybdd->query($sql);
 		$reponse = $reponse ->fetch();
 		$nomEditeur=$reponse['NomEditeur'];
+
+		//Selectionne le festival
+		$sqltest = "SELECT * from Festival WHERE Courant = '1' ";
+		$test = $mybdd->query($sqltest);
+		$Festival = $test->fetch();
+		$annee = $Festival['AnneeFestival'];
+		
 		// on crée une zone à son nom
-		$requete1= $mybdd->prepare('INSERT INTO zone (NumZone, NomZone) VALUES (NULL, :ed)');
+		$requete1= $mybdd->prepare("INSERT INTO zone (NumZone, NomZone, AnneeZone) VALUES (NULL, :ed,'$annee' )");
 		$requete1->execute(array('ed'=>$nomEditeur));
 
 		//on crée l'entité regrouper:
@@ -19,8 +26,6 @@
 		$reponse2 = $mybdd->query($sql2);
 		$reponse2 = $reponse2 ->fetch();
 		$numZone=$reponse2['NumZone'];
-		echo ''.$numZone.' ';//ok
-		echo ''.$editeur.'';//ok
 		//on crée l'entité regrouper
 		$requete2= $mybdd->prepare('INSERT INTO regrouper (IdRegrouper, NumEditeur, NumZone) VALUES (NULL, :numED, :numZ)');
 		$requete2->execute(array('numED'=>$editeur, 'numZ'=>$numZone));
