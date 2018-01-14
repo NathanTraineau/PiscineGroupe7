@@ -13,131 +13,134 @@
 
 <?php
 	include'inc/header.php';
-    //$servername = "localhost";
-    //$username = "root";
-    //$password = "";
-    //$dbname = "piscine";
-    //$editeur= "editeur";
     if ( !empty($_POST['infoID'])) {
     		$num = $_POST['infoID']; // si ça vient du bouton info on aura la variable infoID en post mais si ça vient de la barre recherche alors c'est la varia nomEditeur qu'on va traduire en NumEditeur juste en dessous.
     		} 
     
     // Il faut penser a mettre cette varia dans toutes les pages qui viennent ici
     $myPDO = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
-    if ( !empty($_POST['nomEditeur']) ) {
-    	    $sql3 = "SELECT * FROM `editeur` WHERE NomEditeur = '".$_POST['nomEditeur']."'";
-    		$m = $myPDO->query($sql3)->fetch();
-    		$num = $m['NumEditeur'];
-        
-    		}
-    $sql2 = "SELECT NumContact, NomContact, PrenomContact, NumTelContact, MailContact
-            FROM contact WHERE NumEditeur='".$num."'"; 
-    $edit= "SELECT NomEditeur FROM `editeur` WHERE NumEditeur='".$num."'";
+    if( !empty($num)){
+        $sql3 = "SELECT * FROM `jeux` WHERE NumJeux = '".$num."'";
+        $m = $myPDO->query($sql3)->fetch();
+        $nomJeux = $m[1];
+        $num = $m['NumJeux'];
 
-    
-    $q = $myPDO->query($sql2);
-    $NomEdit = $myPDO->query($edit)->fetch();
+    }
+   
+    $edit= "SELECT *  FROM `editeur` WHERE NumEditeur='".$m['NumEditeur']."'";
+    $Editeur = $myPDO->query($edit)->fetch();
+    $Editeur['NumEditeur'];
     ?>
-    <form method="POST" action="editeur.php">
-    <button type="submit">Retour Editeurs</button>
+<div class='container'>
+    <form method="POST" action="jeux.php">
+    <button type="submit">Retour Jeux</button>
 	</form>
     <table class="table table-bordered table-condensed">
         <thead>
-        	<h3>Contacts de <?php echo $NomJeux['NomJeux'] ?></h3>
+        	<h3>Editeur de <?php echo $nomJeux?>: </h3>
             <tr>
                 <th>Nom Editeur</th>
-                <th>Rue Editeur</th>
                 <th>Ville Editeur</th>
+                <th>Rue Editeur</th>
                 <th>Code postale</th>
             </tr>
         </thead>
         <tbody>
-            <?php while ($r = $q->fetch()): ?>
+            
                 <tr>
-                    <td><?php echo htmlspecialchars($r['NomEditeur']) ?></td>
-                    <td><?php echo htmlspecialchars($r['RueEditeur']); ?></td>
-                    <td><?php echo htmlspecialchars($r['VilleEditeur']); ?></td>
-                    <td><?php echo htmlspecialchars($r['CodePostale']); ?></td>
-                    <!--<td>
-                        <form method="POST" action="supContact.php">
-                            <input type="hidden" name="ContactID" value="<?php echo $r['NumEditeur']; ?>" />
-                            <input type="hidden" name="infoID" value="<?php echo $num; ?>" />
-                            <input type="submit" style="float:right;" id="suppr" value="Suppr" /></button>
-                        </form>
-                        <form method="POST" action="modifContact.php">
+                    <td><?php echo htmlspecialchars($Editeur[1]) ?></td>
+                    <td><?php echo htmlspecialchars($Editeur[2]); ?></td>
+                    <td><?php echo htmlspecialchars($Editeur[3]); ?></td>
+                    <td><?php echo htmlspecialchars($Editeur[4]); ?></td>
+                        <!--<form method="POST" action="changerEditeurFunc.php">
                             <!--<button type="submit">Modif</button> -->
-                            <input type="hidden" name="ContactID" value="<?php echo $r['NumContact']; ?>" />
-                            <input type="hidden" name="infoID" value="<?php echo $num; ?>" />
-                            <input type="submit" style="float:right;" id="suppr" value="modif" /></button>
-                        </form>
-                        <!-- <form method="POST" action="modifEditeur.php"> 
-                            
-                            <input type="submit" style="float:right;" id="modif" value="Modif"/>Modif</button>
-                        </form>
-                    </td>-->
+                            <!--<input type="hidden" name="infoID" value="<?php echo $Editeur['NumEditeur']; ?>" />
+                            <!--<input type="hidden" name="jeuxID" value="<?php echo $num; ?>" />-->
+                            <!--<input type="submit" style="float:right;" id="suppr" value="changerEditeur" /></button>
+                        </form>-->
+                       
+                    </td>
                     
                 </tr>
-            <?php endwhile; ?>
     
         </tbody>
     </table>
-    <!--<form method="POST" action="AjoutContact.php">
-        <input type="hidden" name="infoID" value="<?php echo $num; ?>" />
-		<button type="submit">Ajouter un contact</button>
-	</form>
+    
+<!--On affiche maintenat la categorie du jeux-->
 
-<!-- On affiche maintenant ses jeux
-
---> <?php
-
-		$sql2 = "SELECT * FROM categorie WHERE NumCategorie='".$num."'"; 
-		$jeux = $myPDO->query($sql2);
-
+ <?php
+        $myPDO = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
+		$sql2 = "SELECT * FROM `categorie` WHERE CodeCategorie='".$m['CodeCategorie']."'"; 
+		$categorie = $myPDO->query($sql2)->fetch();
+        $nomCategorie= $categorie[1];
+        //var_dump($categorie[0]);
+        
 	?>
-	
-	<table class="table table-bordered table-condensed" text-align="center">
-        <thead>
-        	<h3>Categorie de <?php echo $NomCategorie['NomCategorie'] ?></h3>
-            
-        </thead>
-        <tbody>
-            <?php while ($JeuxCourant = $categorie->fetch()): ?>
-                <tr>
-                    <tr><td> Nom du jeux :</td><td><strong><?php echo htmlspecialchars($JeuxCourant['NomCategorie']) ?><strong></td> 
-                    	<!--<td>  
-                    	<form method="POST" action="supJeux.php">
-                            <input type="hidden" name="jeuxID" value="<?php echo $r['NumJeux']; ?>">
-                            <input type="hidden" name="infoID" value="<?php echo $num; ?>" />
-                            <input type="submit" style="float:right;" id="suppr" value="Suppr" />
-                        </form>
-                    	</td>
-                    	<td>
-                        <form method="POST" action="modifJeux.php">
-                            <!--<button type="submit">Modif</button> -->
-                            <input type="hidden" name="jeuxID" value="<?php echo $r['NumJeux']; ?>" />
-                            <input type="hidden" name="infoID" value="<?php echo $num; ?>" />
-                            <input type="submit" style="float:right;" id="suppr" value="modif" />
-                        </form> 
-                        </td> 
-                    </tr>
-                    <tr><td>Nombre de Joueurs : </td><?php echo htmlspecialchars($JeuxCourant['NombreJoueur']); ?></td></tr>
-                    <tr><td>Date de Sortie : <td><?php echo htmlspecialchars($JeuxCourant['DateSortie']); ?></td></tr>
-                    <tr><td>Duree Partie<td><?php echo htmlspecialchars($JeuxCourant['DureePartie']); ?></td></tr>
-                    <tr><td>Categorie penser a faire une fonction qui renvoie le str de la caté<td><?php echo htmlspecialchars($JeuxCourant['CodeCategorie']); ?></td></tr>
-                    <tr>
-                        
-                        <!-- <form method="POST" action="modifEditeur.php"> 
-                            
-                            <input type="submit" style="float:right;" id="modif" value="Modif"/>Modif</button>
-                        </form>-->
-                    </td>
-                </tr>
-            </br>
-            <?php endwhile; ?>
+<h3>Categorie du jeux <?php echo $nomJeux?> est: <?php echo $nomCategorie?></h3>
+        	
     
-        </tbody>
-    </table>
-    <form method="POST" action="ajoutJeux.php">
+    <form method="POST" action="ajoutCategorie.php">
         <input type="hidden" name="infoID" value="<?php echo $num; ?>" />
-		<button type="submit">Ajouter un jeux</button>
+		<button type="submit">Ajouter une categorie</button>
 	</form>
+
+<?php
+ $myPDO = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
+
+    //Editeurs
+    $sql = "SELECT NumEditeur, NomEditeur
+            FROM `editeur`";
+    $q = $myPDO->query($sql);
+    $editeurs = [];
+    foreach($q as $ed){
+        $editeurs[$ed['NomEditeur']] = $ed['NumEditeur'];
+    }
+  //$editeur = $_POST['jeuxID'];
+
+//Categories 
+    $sql = "SELECT CodeCategorie, NomCategorie
+            FROM `categorie`";
+    $q = $myPDO->query($sql);
+    $categories = [];
+    foreach($q as $cat){
+        $categories[$cat['NomCategorie']] = $cat['CodeCategorie'];
+    }
+?>
+<body>
+<h3>Pour changer l'editeur du jeux <?php echo $nomJeux?> : </h3>
+
+</br>
+<form action= "changerEditeurFunc.php" method="POST" >
+    <p>
+        <label for="numEditeur">Nom editeur</label> : <select name="numEditeur" id="numEditeur" required>
+                <?php
+                foreach($editeurs as $key => $value):
+                echo '<option value="'.$value.'">'.$key.'</option>'; 
+                endforeach;
+                ?>
+            </select>
+        <!--<label for="Num">NUM </label><input type="number" name="numEditeur" id="numEditeur" required/>-->
+        <input type="hidden" name="infoID" value="<?php echo $Editeur['NumEditeur']; ?>" />
+        <input type="submit" value="Changer" id = "add" />
+    </p>
+</form>
+<h3>Pour changer la categorie du jeux <?php echo $nomJeux?> : </h3>
+<body>
+</br>
+<form action= "changerCategorieFunc.php" method="POST" >
+    <p>
+        <label for="CodeCategorie">Nom editeur</label> : <select name="CodeCategorie" id="CodeCategorie" required>
+                <?php
+                foreach($categories as $key => $value):
+                echo '<option value="'.$value.'">'.$key.'</option>'; 
+                endforeach;
+                ?>
+            </select>
+        <!--<label for="Num">NUM </label><input type="number" name="numEditeur" id="numEditeur" required/>-->
+        <input type="hidden" name="infoID" value="<?php echo $categorie['CodeCategorie']; ?>" />
+        <input type="submit" value="Changer" id = "add" />
+    </p>
+</form>
+<div>
+</body>
+</html>
