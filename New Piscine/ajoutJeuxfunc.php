@@ -12,7 +12,7 @@ $nomJeux = $_POST['nomJeux'];
 $nombre=$_POST['nombre'];
 $DateSortie = $_POST['DateSortie'];
 $DureePartie = $_POST['DureePartie'];
-$editeur = $_POST['infoID'];
+$editeur = $_POST['numEdit'];
 $categ = $_POST['codeCategorie'];
 
 
@@ -28,7 +28,7 @@ echo $categ;
 //     die("Connection failed: " . $myPDO->connect_error);
 // } 
 
-$sql = "INSERT INTO `jeux` VALUES (NULL, '$nomJeux', '$nombre', '$DateSortie', '$DureePartie', '$editeur', '$categ')";
+$sql = "INSERT INTO `jeux` VALUES (NULL, '$nomJeux', '$nombre', '$DateSortie', '$DureePartie', '$editeur', '4' )";
 // $sql = "SELECT * FROM `editeur`";
 
 //$array=[];
@@ -49,9 +49,9 @@ if ($myPDO->query($sql) == TRUE) {
 
 
 <?php
-		if (!empty($_POST['infoID'])){
+		if (!empty($_POST['numEdit'])){
 		?> 	<form name="envoie" action="InfoEditeur.php" method="POST">
-    			<input type="hidden" name="infoID" value="<?php echo $editeur; ?>" />
+    		<input type="hidden" name="infoID" value="<?php echo $editeur; ?>" />
     		</form>
     		<script type="text/javascript"> document.envoie.submit();</script>
     	<?php } ?>

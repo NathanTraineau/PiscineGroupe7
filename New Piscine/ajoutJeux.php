@@ -64,12 +64,12 @@
     	// $edit l'editeur auquel on veut ajouter un jeux
     ?>	
     	ID editeur : <?php echo $edit['NomEditeur'] ?>
-    	<input type="hidden" name="infoID" value="<?php echo $edit['NomEditeur']; ?>" />
+    	<input type="hidden" name="numEdit" value="<?php echo $edit['NomEditeur']; ?>" />
      <p>
     <?php } 
     	  else // si on ajoute un jeux sans être passé par info editeur mais par jeux.php
     	  { ?> 
-        <label for="infoID">ID editeur</label> : <select name="infoID" id="infoID" >
+        <label for="numEdit">ID editeur</label> : <select name="numEdit" id="numEdit" >
 
                 <?php
                 foreach($editeurs as $key => $value):
