@@ -1,0 +1,31 @@
+body {
+	margin: 0;
+}
+
+.header,
+.content,
+.description
+{
+	width: 900px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #456F74;
+}
+
+.footer {
+	width: 940px;
+	margin: 0 auto;
+	background-color: #403D3C;
+}
+
+.clear {
+	clear: both;
+}
+
+/*
+	orange: #EB5937
+	black: #1C1919
+	grey: #403D3C
+	blue: #456F74
+	white: #D3CBBD
+*/
