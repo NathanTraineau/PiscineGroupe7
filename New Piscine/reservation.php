@@ -11,9 +11,16 @@
 
     $myPDO = new PDO('mysql:host=localhost;dbname=piscine', 'root');
 
+    $sqlannee = "SELECT * from Festival where Courant = '1' ";
 
-    $sql1 = "SELECT *
-            FROM `reservation`";
+	$annee1 = $myPDO->query($sqlannee);
+	$Festival = $annee1->fetch();
+	$annee = $Festival['AnneeFestival'];
+
+
+    $sql1 = 'SELECT * FROM `reservation` WHERE FestivalReservation = \''.$annee.'\''  ;
+     
+    
     $edit = "SELECT * FROM 'editeur'";
     $editeur = $myPDO->query($edit); 
     $q = $myPDO->query($sql1);
@@ -41,7 +48,7 @@
                 <th>Editeurs </th>
                 <th>Annulé ? </th>
                 <th>Facture payée ?</th>
-                <th>Actions</th>
+                
                 <th>Informations</th>
             </tr>
         </thead>
@@ -68,16 +75,11 @@
                     	echo "non";
 
                      }else{echo "oui" ; }?></td>
-                    <td>
-                        <form method="POST" action="supReservation.php">
-                            <input type="hidden" name="ReservationID" value="<?php echo $r['NumReservation']; ?>" />
-                            <input type="submit" style="float:right;" id="suppr" value="Supprimer" /></button>
-                        </form>
-                    </td>
+                    
                     <td>
                         <form method="POST" action="InfoReservation.php">
                             <!--<button type="submit">Modif</button> -->
-                            <input type="hidden" name="infoID" value="<?php echo $r['NumReservation']; ?>" /> <!-- met en mémoire pour env en post, le num de l'editeur -->
+                            <input type="hidden" name="NumReservation" value="<?php echo $r['NumReservation']; ?>" /> <!-- met en mémoire pour env en post, le num de l'editeur -->
                             <input type="submit" style="float:right;" id="info" value="info" />Voir Informations</button>
                         </form>
                         <!-- <form method="POST" action="modifEditeur.php"> 

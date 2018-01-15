@@ -37,12 +37,21 @@
 
     </p>
     <?php
-    if (!empty($_POST['infoID'])){
+    
+    if (!empty($_POST['NumReservation'])){
+    	?>
+    	<input type="hidden" name="NumReservation" value="<?php echo $_POST['NumReservation']; ?>" />
+    	<input type="hidden" name="infoID" value="<?php echo $_POST['infoID']; ?>" />
+		
+
+    	<?php
+    } elseif (!empty($_POST['infoID'])){
     	?>
     	<input type="hidden" name="infoID" value="<?php echo $_POST['infoID']; ?>" />
     	<?php
     }
     ?>
+
     <input type="submit" value="Ajouter" id = "add" />
 </form>
 </middle>

@@ -32,5 +32,17 @@ if ($myPDO->query($sql) == TRUE) {
 // $conn->close();
 ?>
 <html>
+<?php
+    
+    if (!empty( $_POST['NumReservation'])){
+    	?>
+    	<form name="envoie" method="POST" action="AjoutJeuxReservation.php">
+		<input type="hidden" name="NumReservation" value="<?php echo $_POST['NumReservation']; ?>" />
+		<input type="hidden" name="infoID" value="<?php echo $_POST['infoID']; ?>" />
+	
+		</form>
+		<script type="text/javascript"> document.envoie.submit();</script>
+    	<?php
+    }?>
 		<script type="text/javascript">location.href = 'jeux.php';</script>
 </html>

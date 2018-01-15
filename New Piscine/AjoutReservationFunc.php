@@ -36,9 +36,16 @@ if (!empty($_POST['EtatFacture'])){
 }
 
 
+$NumLogement = $_POST['logement'];
+$PlacesFrais = $_POST['PlacesFrais'];
+
+
 
 
 $sql = "INSERT INTO `reservation` VALUES (NULL, '$FestivalReservation', '$NumEditeurReservation', '$dateReservation', '$Commentaire', '$PrixEspace', '1', '$EtatFacture')";
+
+
+
 
 
 
@@ -52,7 +59,8 @@ if ($myPDO->query($sql) == TRUE) {
 	<html>
 
 <form name="envoie" method="POST" action="AjoutJeuxReservation.php">
-	
+	<input type="hidden" name="NumLogement" value="<?php echo $NumLogement; ?>" />
+	<input type="hidden" name="PlacesFrais" value="<?php echo $PlacesFrais; ?>" />
 	<input type="hidden" name="infoID" value="<?php echo $NumEditeurReservation; ?>" />
 	
 </form>

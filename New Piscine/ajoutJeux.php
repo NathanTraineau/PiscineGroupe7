@@ -71,6 +71,17 @@
         <!--<label for="Num">NUM </label><input type="number" name="numEditeur" id="numEditeur" required/>-->
 
     </p>
+
+    <?php
+    
+    if (!empty($_POST['NumReservation'])){
+    	?>
+    	<input type="hidden" name="NumReservation" value="<?php echo $_POST['NumReservation']; ?>" />
+    	<input type="hidden" name="infoID" value="<?php echo $_POST['infoID']; ?>" />
+		
+
+    	<?php
+    } ?>
     <input type="submit" value="Ajouter jeux" id = "add" />
 </form>
 </form>

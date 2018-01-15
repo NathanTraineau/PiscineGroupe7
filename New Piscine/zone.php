@@ -62,12 +62,7 @@
     
 		<middle>
 
-			    <!--<form method="POST" action="ChoixZone.php">-->
-			    <input type="submit" value="Ajouter une zone" />
-	
-			</form>
-				
-		</middle>
-	</body>
+
 </div>
+
 </html>

@@ -51,7 +51,6 @@ CREATE TABLE logement(
 CREATE TABLE reservation(
 	NumReservation int NOT NULL UNIQUE AUTO_INCREMENT,
 	FestivalReservation int NOT NULL,
-
 	NumEditeurReservation int NOT NULL,
 	DateReservation date,
 	Commentaire text(999),
@@ -98,8 +97,8 @@ CREATE TABLE zone(
 );
 CREATE TABLE concerner(
 	IdConcerner int NOT NULL UNIQUE AUTO_INCREMENT,
-	NumReservation int NOT NULL UNIQUE,
-	NumJeux int NOT NULL UNIQUE,
+	NumReservation int NOT NULL ,
+	NumJeux int NOT NULL ,
 
 	NumZone int NOT NULL,
 
