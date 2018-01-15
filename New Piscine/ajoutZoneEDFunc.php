@@ -4,6 +4,17 @@
 		//connexion base de donnees
 		$mybdd = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
 		$editeur = $_POST['numEditeur'];
+
+		// on verifie si une zone existe déjà pour cet editeur:
+		$existe=$mybdd->prepare(' SELECT IdRegrouper, NumEditeur FROM regrouper WHERE NumEditeur= :num');
+		$existe->execute(array('num'=>$editeur));
+		$existe = $existe->fetch();
+		$existe = $existe['IdRegrouper'];
+
+		if ( !empty($existe)){ ?>
+		<h1> Une zone est déjà créée pour cet éditeur </h1>
+		<?php }else{
+		
 		//on récupère le nom de l'editeur
 		$sql =	' SELECT NumEditeur, NomEditeur FROM editeur WHERE NumEditeur=\'' . $editeur . '\'';	
 		$reponse = $mybdd->query($sql);
@@ -31,10 +42,9 @@
 		$requete2->execute(array('numED'=>$editeur, 'numZ'=>$numZone));
 		//echo ''.$requete2.'';
 
-	?>
-
+	?>	
 	<!-- RETOUR -->
 	
-	<script type="text/javascript">location.href = 'zone.php';</script> 
-
+	<script type="text/javascript">location.href = 'zone.php';</script>  
+	<?php } ?>
 </html>
