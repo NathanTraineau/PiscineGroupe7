@@ -9,7 +9,7 @@
 	<?php
 
 	// Check if username and password are correct
-	if ($_POST["nom"] == "php" && $_POST["pass"] == "php") {
+	if ($_POST["nom"] == "festival" && $_POST["pass"] == "festival") {
 
 	// If correct, we set the session to YES
 	  session_start();
@@ -63,7 +63,7 @@ if ($myPDO->query($sql) == TRUE) {
 
 	// If not correct, we set the session to NO
 	  $_SESSION["Login"] = "NO";
-	  echo "<h1>Vous avez trompe le compte! Esseyer de nouveau :) </h1>";
+	  echo "<h1>L’identifiant et/ou le mot de passe que vous avez entré sont invalides, veuillez réessayer.</h1>";
 	 
 	}
 	

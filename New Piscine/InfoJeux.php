@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<style>
-			<table>
-			{
-				text-align= center ;
-			}
-		</style>
-	</head>
+    <head>
+        <meta charset="utf-8" />
+        <style>
+            <table>
+            {
+                text-align= center ;
+            }
+        </style>
+    </head>
 </html>
 
 <?php
-	include'inc/header.php';
+    include'inc/header.php';
     if ( !empty($_POST['infoID'])) {
-    		$num = $_POST['infoID']; // si ça vient du bouton info on aura la variable infoID en post mais si ça vient de la barre recherche alors c'est la varia nomEditeur qu'on va traduire en NumEditeur juste en dessous.
-    		} 
+            $num = $_POST['infoID']; // si ça vient du bouton info on aura la variable infoID en post mais si ça vient de la barre recherche alors c'est la varia nomEditeur qu'on va traduire en NumEditeur juste en dessous.
+            } 
     
     // Il faut penser a mettre cette varia dans toutes les pages qui viennent ici
     $myPDO = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
@@ -30,14 +30,61 @@
     $edit= "SELECT *  FROM `editeur` WHERE NumEditeur='".$m['NumEditeur']."'";
     $Editeur = $myPDO->query($edit)->fetch();
     $Editeur['NumEditeur'];
+
+    //affichage
+    $sql = "SELECT NumEditeur
+            FROM `editeur`";
+    $q = $myPDO->query($sql);
+    //$editeurs = [];
+    //foreach($q as $ed){
+
+        //$editeurs[$ed['NomEditeur']] = $ed['NumEditeur'];
+    //}
+
+
+    
+    $sqlannee = "SELECT * from Festival where Courant = '1' ";
+
+    $annee1 = $myPDO->query($sqlannee);
+    $Festival = $annee1->fetch();
+    $annee = $Festival['AnneeFestival'];
+
+
+    $sql1 = 'SELECT * FROM `jeux` WHERE FestivalJeux = \''.$annee.'\''  ;
+     
+    $k = $myPDO->query($sql1);
     ?>
+
+
 <div class='container'>
-    <form method="POST" action="jeux.php">
+     <form method="POST" action="jeux.php">
     <button type="submit">Retour Jeux</button>
-	</form>
+    </form>
+    <h1>Informations du jeux: </h1>
+            <table class="table table-bordered table-condensed" id="jeux">
+                <thead>
+                    <tr>
+                        <th>Nom Jeux</th>
+                        <th>Nombre Joueur</th>
+                        <th>Date sortie</th>
+                        <th>Duree Partie</th>
+                        <th>Commentaire</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <td><?php echo htmlspecialchars($m[2]) ?></td>
+                            <td><?php echo htmlspecialchars($m[3]); ?></td>
+                            <td><?php echo htmlspecialchars($m[4]); ?></td>
+                            <td><?php echo htmlspecialchars($m[5]); ?></td>
+                            <td><?php echo htmlspecialchars($m[8]);?></td>
+                        </tr>
+                </tbody>
+            </table>
+
     <table class="table table-bordered table-condensed">
         <thead>
-        	<h3>Editeur de <?php echo $nomJeux?>: </h3>
+            <h3>Editeur de <?php echo $nomJeux?>: </h3>
             <tr>
                 <th>Nom Editeur</th>
                 <th>Ville Editeur</th>
@@ -70,19 +117,19 @@
 
  <?php
         $myPDO = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
-		$sql2 = "SELECT * FROM `categorie` WHERE CodeCategorie='".$m['CodeCategorie']."'"; 
-		$categorie = $myPDO->query($sql2)->fetch();
+        $sql2 = "SELECT * FROM `categorie` WHERE CodeCategorie='".$m['CodeCategorie']."'"; 
+        $categorie = $myPDO->query($sql2)->fetch();
         $nomCategorie= $categorie[1];
         //var_dump($categorie[0]);
         
-	?>
+    ?>
 <h3>Categorie du jeux <?php echo $nomJeux?> est: <?php echo $nomCategorie?></h3>
-        	
+            
     
-    <form method="POST" action="ajoutCategorie.php">
+   <!-- <form method="POST" action="ajoutCategorie.php">
         <input type="hidden" name="infoID" value="<?php echo $num; ?>" />
-		<button type="submit">Ajouter une categorie</button>
-	</form>
+        <button type="submit">Ajouter une categorie</button>
+    </form>-->
 
 <?php
  $myPDO = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
@@ -107,7 +154,7 @@
     }
 ?>
 <body>
-<h3>Pour changer l'editeur du jeux <?php echo $nomJeux?> : </h3>
+<h5>Pour changer l'editeur du jeux <?php echo $nomJeux?> : </h5>
 
 </br>
 <form action= "changerEditeurFunc.php" method="POST" >
@@ -124,12 +171,12 @@
         <input type="submit" value="Changer" id = "add" />
     </p>
 </form>
-<h3>Pour changer la categorie du jeux <?php echo $nomJeux?> : </h3>
+<h5>Pour changer la categorie du jeux <?php echo $nomJeux?> : </h5>
 <body>
 </br>
 <form action= "changerCategorieFunc.php" method="POST" >
     <p>
-        <label for="CodeCategorie">Nom Categorie</label> : <select name="CodeCategorie" id="CodeCategorie" required>
+        <label for="CodeCategorie">Nom categorie</label> : <select name="CodeCategorie" id="CodeCategorie" required>
                 <?php
                 foreach($categories as $key => $value):
                 echo '<option value="'.$value.'">'.$key.'</option>'; 
@@ -143,4 +190,12 @@
 </form>
 <div>
 </body>
+<style>
+    h1{
+        color:green;
+    }
+    h3 {
+        color: #3366ff;
+    }
+</style>
 </html>
