@@ -12,16 +12,16 @@ $recu = $_POST['recu'];
 $Retour=$_POST['Retour'];
 $Don = $_POST['Don'];
 $NumJeux = $_POST['jeuxID'];
-$nombre = $_POST['nombre'];
+$Nombre = $_POST['nombre'];
 $NumReservation = $_POST['NumReservation'];
 $NumZone = $_POST['NumZone'];
-
+$IdConcerner = $_POST['IdConcerner'];
 
 
 #$categ = $_POST['codeCategorie'];
 
 
-$sql = "INSERT INTO `concerner` VALUES (NULL, '$NumReservation', '$NumJeux', '$NumZone', '$Nombre', '$Recu', '$Retour', 'don' )";
+$sql = "UPDATE  concerner SET  NumJeux = '".$NumJeux."' , Nombre = '".$Nombre."', NumJeux= '".$NumJeux."',NumZone= '".$NumZone."',Retour= '".$Retour."' , recu= '".$recu."' , don= '".$Don."' WHERE IdConcerner='".$IdConcerner."' and NumReservation='".$NumReservation."' ";
 // $sql = "SELECT * FROM `editeur`";
 
 
@@ -35,14 +35,11 @@ if ($myPDO->query($sql) == TRUE) {
 // $conn->close();
 ?>
 <html>
-		<form name="envoie" method="POST" action="AjoutJeuxReservation.php">
+		<form name="envoie" method="POST" action="InfoReservation.php">
 							
-                            <input type="hidden" name="infoID" value="<?php echo $_POST['infoID'] ; ?>" />
                             <input type="hidden" name="NumReservation" value="<?php echo $_POST['NumReservation']; ?>" />
         </form>
         <script type="text/javascript"> document.envoie.submit();</script>
-		<script type="text/javascript">location.href = 'AjoutJeuxReservation.php';</script>
+		
 </html>
-
-
 

@@ -61,19 +61,16 @@
     
 		<middle>
 
-<<<<<<< HEAD
-			    <form method="POST" action="ajoutZone.php">
-=======
+
 			    <!--<form method="POST" action="ChoixZone.php">-->
->>>>>>> 76cb15ec5be9351bec9c30bd15ed5d37a66ee907
+
 			    <input type="submit" value="Ajouter une zone" />
 	
 			</form>
 				
 		</middle>
 	</body>
-<<<<<<< HEAD
-=======
+
 </div>
->>>>>>> 76cb15ec5be9351bec9c30bd15ed5d37a66ee907
+
 </html>

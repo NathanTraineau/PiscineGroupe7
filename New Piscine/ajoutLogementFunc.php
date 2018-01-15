@@ -28,7 +28,17 @@ if ($myPDO->query($sql) == TRUE) {
 
 ?>
 <?php
-    if (!empty( $_POST['infoID'])){
+    
+    if (!empty( $_POST['NumReservation'])){
+    	?>
+    	<form name="envoie" method="POST" action="AjoutJeuxReservation.php">
+		<input type="hidden" name="NumReservation" value="<?php echo $_POST['NumReservation']; ?>" />
+		<input type="hidden" name="infoID" value="<?php echo $_POST['infoID']; ?>" />
+	
+		</form>
+		<script type="text/javascript"> document.envoie.submit();</script>
+    	<?php
+    } elseif (!empty( $_POST['infoID'])){
     	?>
     	<form name="envoie" method="POST" action="ajoutReservation.php">
 		<input type="hidden" name="infoID" value="<?php echo $_POST['infoID']; ?>" />

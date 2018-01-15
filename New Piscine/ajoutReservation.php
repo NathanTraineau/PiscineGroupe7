@@ -12,26 +12,29 @@
     $myPDO = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
 
    	
-/*
+
+
+
     //Jeux
-    $sql = " SELECT * FROM `reservation` WHERE NumEditeur = '".$NumEditeur."' ,   ";
+    $sql = ' SELECT * FROM `reservation` WHERE NumEditeurReservation = \''.$NumEditeur.'\'';
 
     $q = $myPDO->query($sql);
 
-    if (!empty($q->fetch())){ 
+    if (!empty($r = $q->fetch())){ 
 ?>
-    	<form method="POST" action="ChoixEditeurResa.php" name="envoie" >
-         <input type="hidden" name="error" value="erreur" />
+    	<form  name="envoie" method="POST" action="ChoixEditeurResa.php" >
+         	<input type="hidden" name="erreur" value="<?php echo $r['NumReservation'] ?>" />
 
-                           
+
+        	<?php echo $r['NumReservation']; ?>                   
         </form> 
         <script type="text/javascript"> document.envoie.submit();</script>
-
+        <script type="text/javascript">location.href = 'ChoixEditeurResa.php';</script>
         <?php
         
     }
 
-    */
+    
 
     ?>
 
@@ -50,34 +53,7 @@
 
     <h3>Ajouter une Reservation pour <?php echo $NomEdit['NomEditeur'] ?></h3>
 
-    <form method="POST" action="ajoutLogement.php">
-			            		<input type="hidden" name="infoID" value="<?php echo $infoID; ?>" />
-
-								<button type="submit">Ajout Logement</button>
-							</form>
-                    
-    <form method="POST" action="AjoutReservationFunc.php">
-   
-    <!-- Ajout d'un logement à la résa -->
-    <label for="Annee">Logement </label> : <select name="logement" id="logement" >
-			                <?php
-			                $myPDO = new PDO('mysql:host=localhost;dbname=piscine', 'root', '');
-
-			                $sql = "SELECT * FROM `logement`";
-						    $q = $myPDO->query($sql);
-						    $festival = [];
-						    foreach($q as $fes){
-						        $festival[$fes['NomLogement']] = $fes['NumLogement'];
-						    }
-			                foreach($festival as $key => $value):
-			                	echo '<option value="'.$value.'">'.$key.'</option>'; //il faut créer les entrées dans la bdd
-			                endforeach;
-			                ?>
-			                </select>
-
-			                
-			            	
-			            	
+    		            	
     
 
 
