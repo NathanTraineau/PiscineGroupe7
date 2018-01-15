@@ -8,7 +8,7 @@
 ?>
 <middle>
 <form action= "AjoutFestivalFunc.php" method="POST" >
-    <legend>Editeur</legend>
+    <legend>Festival</legend>
     <p>
         <label for="AnneeFestival">Annee Festival</label> : <input type="int" name="AnneeFestival" id="AnneeFestival" required  />
     </p>
