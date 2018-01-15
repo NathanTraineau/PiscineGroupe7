@@ -53,13 +53,30 @@
                 </thead>
                 <tbody>
                     <?php while ($r = $k->fetch()): ?>
-                        <tr>
+                        
+				<?php
+				//Nom de la categorie
+				$nomCat = 'SELECT * from categorie WHERE CodeCategorie = \'' . $r['CodeCategorie'] . '\' ';
+				$nomCat = $myPDO->query($nomCat);
+				$nomCat = $nomCat->fetch();
+				$nomCat= $nomCat['NomCategorie']; 
+				?>
+				
+				<?php
+				//Nom de l'editeur
+				$nomE = 'SELECT * from editeur WHERE NumEditeur = \'' . $r['NumEditeur'] . '\' ';
+				$nomE = $myPDO->query($nomE);
+				$nomE = $nomE->fetch();
+				$nomE= $nomE['NomEditeur']; 
+				?>
+
+			<tr>
                             <td><?php echo htmlspecialchars($r["NomJeux"]) ?></td>
                             <td><?php echo htmlspecialchars($r['NombreJoueur']); ?></td>
                             <td><?php echo htmlspecialchars($r['DateSortie']); ?></td>
                             <td><?php echo htmlspecialchars($r['DureePartie']); ?></td>
-                            <td><?php echo htmlspecialchars($r['NumEditeur']); ?></td>
-                            <td><?php echo htmlspecialchars($r['CodeCategorie']); ?></td>
+                            <td><?php echo htmlspecialchars($nomE); ?></td>
+                            <td><?php echo htmlspecialchars($nomCat); ?></td>
                             <td>
                                 <form method="POST" action="supJeux.php">
                                     <input type="hidden" name="jeuxID" value="<?php echo $r['NumJeux']; ?>" />
