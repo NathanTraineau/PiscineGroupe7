@@ -28,6 +28,7 @@
 				<thead>
 				    <tr>
 					<th>Zones</th>
+					<th>Nombre d'espaces occupés</th>
 					<th>Actions</th>
 				    </tr>
 				</thead>
@@ -36,6 +37,13 @@
 				    <?php while ($donnees = $reponse->fetch()):?>
 					<tr>
 					    <td><?php echo htmlspecialchars($donnees['NomZone']) ?></td>
+						<td>
+					<?php $req = 'SELECT IdLocaliser, NumReservation, NumZone, SUM(NombreEspace) as som FROM localiser WHERE NumZone=\'' .$donnees['NumZone']. '\'';
+						$espace = $mybdd->query($req);
+						$espace1 = $espace->fetch();
+						$nbrEspace = $espace1['som'];
+						echo htmlspecialchars($nbrEspace);
+					?></td>						
 					<td>
 						<form method="POST" action="supZone.php">
 							<input type="hidden" name="zoneID" value="<?php echo $donnees['NumZone']; ?>" />			
@@ -44,7 +52,7 @@
 						
 						<form method="POST" action="AfficherJeuxZone.php">
 							<input type="hidden" name="zoneID" value="<?php echo $donnees['NumZone']; ?>" />
-                            				<input type="submit" style="float:right;" value="Voir les jeux de cette zone" />
+                            				<input type="submit" style="float:right;" value="Voir jeux" />
                         			</form>
 					</td>
 					</tr>

@@ -72,16 +72,25 @@
                      			}else{echo "oui" ; }?></td>
 					<td>
 					<form method="POST" action="InfoJeux.php">
-                                    <input type="hidden" name="infoID" />
-                                    <input type="submit" style="float:right;" id="suppr" value="Info Jeux" />
+                                    <input type="hidden" name="infoID" value="<?php echo $donnees['NumJeux']; ?>"/>
+                                    <input type="submit" style="float:right;" value="Info Jeux" />
                                     </form>
+
+					<form method="POST" action="InfoEditeur.php">
+                                    <input type="hidden" name="infoID" value="<?php echo $donnees['NumEditeur']; ?>"/>
+                                    <input type="submit" style="float:right;" value="Info Editeur" />
+                                    </form>
+					<form method="POST" action="InfoReservation.php">
+                                    <input type="hidden" name="infoID" value="<?php echo $donnees['NumJeux']; ?>"/>
+                                    <input type="submit" style="float:right;" value="Info Resa" />
+                                    </form>
+
 					</td>
 					</tr>
 				    <?php endwhile; ?>
 				</tbody>
 			    </table>
-		<form method="POST" action="zone.php">
-                    	<input type="submit" style="float:right;" value="Annuler" />
+		
                 </form>
     
 		</div>
